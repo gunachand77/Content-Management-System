@@ -1,4 +1,4 @@
-**My Awesome Blog - Personal Content Management System**
+# **My Awesome Blog - Personal Content Management System**
 
 A beautiful, modern blogging platform built with Django and Tailwind CSS. Perfect for personal blogging, journaling, and sharing your stories with the world.
 
