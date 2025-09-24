@@ -20,11 +20,10 @@ A beautiful, modern blogging platform built with Django and Tailwind CSS. Perfec
 
 **Screen shots:**
 
-![alt text](screenshots/Image1.JPG)
-![alt text](screenshots/Image2.JPG)
-![alt text](screenshots/Image3.JPG)
-![alt text](screenshots/Image4.JPG)
-
+![alt text](../screenshots/Image1.JPG)
+![alt text](../screenshots/Image2.JPG)
+![alt text](../screenshots/Image3.JPG)
+![alt text](../screenshots/Image4.JPG)
 
 
 🛠️ Installation Guide
