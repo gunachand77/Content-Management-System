@@ -1,0 +1,45 @@
+{% extends 'cms_app/base.html' %}
+
+{% block title %}{{ page.title }} Content Page {% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <article class="glass-card overflow-hidden">
+        <!-- Header with Gradient -->
+        <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-8">
+            <div class="flex justify-between items-start mb-4">
+                <span class="bg-white text-purple-600 px-4 py-1 rounded-full text-sm font-semibold">
+                    {{ page.category.name }}
+                </span>
+                <span class="text-white/90">{{ page.created_at|date:"F j, Y" }}</span>
+            </div>
+            <h1 class="text-4xl font-bold mb-4 leading-tight">{{ page.title }}</h1>
+            <div class="flex items-center text-white/80">
+                <i class="fas fa-user mr-2"></i>
+                <span class="font-medium">By {{ page.author.username }}</span>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-8 prose prose-lg max-w-none">
+            <div class="text-gray-700 leading-relaxed text-lg">
+                {{ page.content|linebreaks }}
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="border-t border-gray-200 p-6 bg-gray-50/50">
+            <div class="flex justify-between items-center">
+                <a href="{% url 'home' %}" class="text-purple-600 hover:text-purple-700 flex items-center transition duration-300">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Home
+                </a>
+                {% if user == page.author %}
+                <a href="#" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-300">
+                    <i class="fas fa-edit mr-1"></i> Edit Page
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </article>
+</div>
+{% endblock %}

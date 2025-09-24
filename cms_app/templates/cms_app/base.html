@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Awesome Blog{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Gradient background */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Card styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Footer at bottom */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .content-wrap {
+            flex: 1;
+        }
+        
+        /* Larger admin font */
+        .admin-large {
+            font-size: 1.1rem !important;
+        }
+        .admin-large th, .admin-large td {
+            font-size: 1.1rem !important;
+            padding: 15px !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-lg border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="{% url 'home' %}" class="text-2xl font-bold text-gray-800">
+                    <i class="fas fa-newspaper mr-2 text-purple-600"></i>My Awesome Blog
+                </a>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'home' %}" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-lg transition duration-300">Home</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'create_page' %}" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition duration-300">
+                            <i class="fas fa-plus mr-1"></i>New Page
+                        </a>
+                        <a href="{% url 'admin_dash' %}" class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-lg transition duration-300">Dashboard</a>
+                        <form method="post" action="{% url 'admin:logout' %}" class="inline">
+    {% csrf_token %}
+    <button type="submit" class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-lg transition duration-300 flex items-center">
+        <i class="fas fa-sign-out-alt mr-1"></i>Logout
+    </button>
+</form>
+                    {% else %}
+                        <a href="{% url 'admin:login' %}?next=/" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                            <i class="fas fa-sign-in-alt mr-1"></i>Login
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-wrap">
+        <main class="max-w-7xl mx-auto px-4 py-8">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="glass-card p-4 mb-6 border-l-4 {% if message.tags == 'success' %}border-green-500{% else %}border-blue-500{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    <!-- Footer - Fixed at Bottom -->
+    <footer class="bg-black/20 text-white text-center py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="text-white/80">&copy; 2025 Welcome to My Awesome Blog. Built with Joy.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add admin font size increase
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.pathname.includes('/admin/')) {
+                document.body.classList.add('admin-large');
+            }
+        });
+    </script>
+</body>
+</html>
