@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # **My Awesome Blog - Personal Content Management System**
 
 A beautiful, modern blogging platform built with Django and Tailwind CSS. Perfect for personal blogging, journaling, and sharing your stories with the world.
@@ -155,3 +156,7 @@ Configure domain and SSL
 Start sharing your stories with the world! 🌟
 
    My Awesome Blog - Where your stories come to life.
+=======
+# Content-Management-System
+A simple CMS built with Django. Includes basic page management, templates, and an admin dashboard.
+>>>>>>> f6ae971cb7bffe1e2c39518826a323c5a5e27883
